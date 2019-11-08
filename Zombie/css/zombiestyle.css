@@ -1,0 +1,12 @@
+#Score{
+    text-align: center;
+}
+#reset{
+    position: absolute;
+    right: 50%;
+    top: 95%;
+}
+#death{
+    height:120px;
+    width:120px;
+}

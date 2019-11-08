@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Zombie Hunter</title>
+        <link rel="stylesheet" type="text/css" href="css/zombiestyle.css">
+    </head>
+    <body>
+        <p id = "Score"></p>
+        <img id = "zombie"/>
+        <img id = "death">
+        <audio id = "explosion"></audio>
+        <button id = "reset"></button>
+        <script>
+            let score = 0;
+            let width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+            let height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+            let randomWidth = 0;
+            let randomHeight = 0;
+            let audio = new Audio("src/Explosion.mp3");
+            keepScore();
+            showZombie();
+            resetButton();
+            setInterval(function moveZombie(){
+                width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+                height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+                randomWidth = (width-120) * Math.random();
+                randomHeight = (height-120) * Math.random();
+                document.getElementById("zombie").style.position = "absolute";
+                document.getElementById("zombie").style.left = randomWidth + "px";
+                document.getElementById("zombie").style.top = randomHeight + "px";
+                document.getElementById("zombie").style.display = "block";
+                document.getElementById("zombie").onclick = kill;
+                return randomWidth, randomHeight;
+            }, 2000);
+            function showZombie(){
+                document.getElementById("zombie").src = "images/zombie.png";
+                width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+                height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+                randomWidth = (width-120) * Math.random();
+                randomHeight = (height-120) * Math.random();
+                document.getElementById("zombie").style.position = "absolute";
+                document.getElementById("zombie").style.left = randomWidth + "px";
+                document.getElementById("zombie").style.top = randomHeight + "px";
+                document.getElementById("zombie").style.display = "block";
+                document.getElementById("zombie").onclick = kill;
+                return randomWidth, randomHeight;
+            }
+            function resetButton(){
+                document.getElementById("reset").innerHTML = "Reset";
+                document.getElementById("reset").onclick = resetScore;
+            }
+            function resetScore(){
+                score = 0;
+                document.getElementById("Score").innerHTML= "Score: "+ score;
+            }
+            function keepScore(){
+                document.getElementById("Score").innerHTML= "Score: "+ score;
+            }
+            function kill(){
+                score += 1;
+                audio.play();
+                document.getElementById("Score").innerHTML= "Score: "+ score;
+                deathAnimation();
+                setTimeout(function(){document.getElementById("death").style.display = "none";}, 1000);
+                document.getElementById("zombie").style.display = "none";
+            }
+            function deathAnimation(){
+                document.getElementById("death").src = "images/explosion.gif";
+                document.getElementById("death").style.position = "absolute";
+                document.getElementById("death").style.left = randomWidth + "px";
+                document.getElementById("death").style.top = randomHeight + "px";
+                document.getElementById("death").style.display = "block";
+                showZombie();
+            }
+        </script>
+    </body>
+</html>
