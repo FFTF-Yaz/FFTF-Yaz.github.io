@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Lab 8A</title>
+</head>
+
+<body>
+    <script>
+        let btn;
+        function buttonMaker(num) {
+            letterArray = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+            buttonArray = [];
+            for (i = 0; i < num; i++) {
+                btn = document.createElement("BUTTON");
+                document.body.appendChild(btn);
+                btn.innerHTML = "" + letterArray[i];
+            }
+        }
+        buttonMaker(26);
+        let recipeObject = new recipe("A clam", 1, ["Clams", "water"]);
+        function recipe(title, servings, ingredients) {
+            this.title = title;
+            this.servings = servings;
+            this.ingredients = ingredients;
+        }
+        document.write("<br>" + "Title: " + recipeObject.title + "<br>");
+        document.write("Serves: " + recipeObject.servings + "<br>");
+        document.write("Ingredients:" + "<br>");
+        for (i = 0; i < recipeObject.ingredients.length; i++) {
+            document.write(recipeObject.ingredients[i] + "<br>");
+        }
+    </script>
+</body>
+
+</html>
